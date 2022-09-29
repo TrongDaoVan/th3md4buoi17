@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+        function showAll() {
+            // Lấy dữ liệu phía bankend
+            $.ajax({
+                // Loại của requet get pot push delete
+                type: "GET",
+
+                // Đường dẫn API
+                url: "/customers1",
+
+                // Xử lý lúc thành công
+                success: function (data) {
+                    console.log(data)
+                    // Vẽ lại bảng
+                    let content = "";
+                    for (let i = 0; i < data.length; i++) {
+                        content += `<tr><td>${data[i].id}</td>
+        <td>${data[i].firstName}</td>
+        <td>${data[i].lastName}</td>
+        <td><a>Xóa</a></td></tr>`;
+                    }
+                    document.getElementById("tbody").innerHTML = content;
+
+                }
+
+            })
+            event.preventDefault();
+        }
+
+        showAll();
+    </script>
+</head>
+<body>
+<table border="1px">
+    <tr>
+        <td>id</td>
+        <td>firstName</td>
+        <td>lastName</td>
+        <td>Ghét nên xóa</td>
+    </tr>
+    <tbody id="tbody">
+        <td>1</td>
+        <td>Trong</td>
+        <td>Đẹp trai</td>
+        <td><a>Xóa</a></td>
+    </tbody>
+</table>
+</body>
+</html>
